@@ -1,16 +1,16 @@
 #  Mean and variance of a discrete  distribution
 
 
-# Aim 
+# Aim : 
 
 To find mean and variance of arrival of objects from the feeder using probability distribution
 
 
-# Software required 
+# Software required :  
 
 Python and Visual components tool
 
-# Theory
+# Theory:
 
 The expectation or the mean of a discrete random variable is a weighted average of all possible
 values of the random variable. The weights are the probabilities associated with the corresponding values. 
@@ -24,7 +24,7 @@ It shows the distance of a random variable from its mean. It is calcualted as
 ![image](https://user-images.githubusercontent.com/103921593/192938695-99fedc01-34d5-4d36-84df-5880e766ed0c.png)
 
 
-# Procedure 
+# Procedure :
 
 1. Construct frequency distribution for the data
 
@@ -43,68 +43,54 @@ It shows the distance of a random variable from its mean. It is calcualted as
       ![image](https://user-images.githubusercontent.com/103921593/192942852-913550a9-fabe-4a55-b956-0487b18bbd97.png)
 
 
-# Experiment 
+# Experiment :
 
 ![image](https://user-images.githubusercontent.com/103921593/229993174-5b67e57e-3e01-4ac4-9f83-410a932b22bf.png)
 
-# Program 
-
-#### DEVELOPED BY : **KABELAN G K**<BR>Reg No : **212224110027**
-
-### Declaring the value of n
-
-```python
+# Program :
+```
 import numpy as np
-n = int(input("Enter the value of n : "))
-print("Value of n =", n)
+L = [int(i) for i in input("Enter arrival data: ").split()]
+
+N = len(L)
+M = max(L)
+X = []
+f = []
+
+for i in range(M + 1):
+   c = 0
+   for j in range(N):
+       if L[j] == i:
+           c += 1
+   f.append(c)
+   X.append(i)
+
+sf = np.sum(f)
+p = [f[i] / sf for i in range(M + 1)]
+
+mean = np.inner(X, p)
+EX2 = np.inner(np.square(X), p)
+
+var = EX2 - mean**2
+SD = np.sqrt(var)
+
+print("\nX\tp(x)")
+for i in range(M + 1):
+   if f[i] > 0:  
+       print(f"{X[i]}\t{p[i]:.3f}")
+
+print(f"\nThe Mean arrival rate is {mean:.3f}")
+print(f"The Variance of arrival from feeder is {var:.3f}")
+print(f"The Standard deviation of arrival from feeder is {SD:.3f}")
+
 ```
 
-### Getting the inputs
-
-```python
-InputVal = {}
-for i in range(1, n+1):
-    val = int(input(f"Enter the value no {i} : "))
-    try:
-        InputVal[val] += 1
-    except:
-        InputVal[val] = 1
-print(f"{i} Values Collected Successfully")
-```
-### Finding Mean
-
-``` python
-mean = 0
-for key, val in InputVal.items():
-    mean += key*(val/n)
-print(f"Mean = {mean:.3f}")
-```
-### Finding Variance
-
-```python 
-ex2 = 0
-for key, val in InputVal.items():
-    ex2 += ((key**2) * val/n)
-var = ex2 - mean**2
-print(f"Variance : {var:.3f}")
-```
-### Finding Standard Deviation
-
-```python
-from math import sqrt
-sdtDeviation = sqrt(var)
-print(f"Standard Deviation = {sdtDeviation:.3f}")
-```
-
-# Output 
-
-### Refer to the following images to view the output of the program
-![alt text](<Output Images/image.png>)
-![alt text](<Output Images/image-1.png>) 
-![alt text](<Output Images/image-2.png>) 
-![alt text](<Output Images/image-3.png>) 
-![alt text](<Output Images/image-4.png>) 
 
 
-# Result 
+# Output : 
+<img width="1044" height="654" alt="{0C40FE01-5F8E-4F95-91F5-80058235C9CD}" src="https://github.com/user-attachments/assets/25562b87-8d88-4536-9303-6efa324f360f" />
+
+
+
+# Results :
 The mean and variance of arrivals of objects from feeder using probability distribution are calculated.
